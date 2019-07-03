@@ -1,0 +1,38 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>Registration Form</mat-card-title>
+    <mat-card-subtitle>Please fill following details to register</mat-card-subtitle>
+  </mat-card-header>
+  
+  <form class="example-container" [formGroup]="registerForm" (ngSubmit)='onSubmit()' >
+    <mat-form-field appearance="outline">
+      <mat-label>User Name</mat-label>
+      <input matInput formControlName="userName" required>
+      <mat-error *ngIf="registerForm.get('userName').hasError('required')&& registerForm.get('userName').touched">First Name is required</mat-error>
+      <mat-error *ngIf="registerForm.get('userName').hasError('pattern')&& registerForm.get('userName').touched">Names can only have alphabets</mat-error>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" required formControlName="email">
+      <mat-error>Please provide a valid email address</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" required formControlName="password">
+      <mat-error *ngIf="registerForm.get('password').hasError('required')&& registerForm.get('password').touched">Password is required</mat-error>
+      <mat-error *ngIf="registerForm.get('password').hasError('minlength')&& registerForm.get('password').touched">Password must be atleast 6 characters long</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Confirm Password</mat-label>
+      <input matInput type="password" required formControlName="confirmPassword">
+   
+      <mat-error *ngIf="registerForm.hasError('passwordValidator') && (registerForm.get('confirmPassword').touched)">This field should match with password</mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" [disabled]='!registerForm.valid'>Register</button>
+  </form>
+</mat-card>

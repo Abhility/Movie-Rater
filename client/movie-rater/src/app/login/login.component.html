@@ -1,0 +1,26 @@
+<mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Login</mat-card-title>
+      <mat-card-subtitle>Please fill following details to login</mat-card-subtitle>
+    </mat-card-header>
+    
+    <form class="example-container" [formGroup]="loginForm" (ngSubmit)='onSubmit()' >
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" required formControlName="email">
+        <mat-error>Please provide a valid email address</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" required formControlName="password">
+        <mat-error *ngIf="loginForm.get('password').hasError('required')&& loginForm.get('password').touched">Password is required</mat-error>
+        <mat-error *ngIf="loginForm.get('password').hasError('minlength')&& loginForm.get('password').touched">Password must be atleast 6 characters long</mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" [disabled]='!loginForm.valid'>Login</button>
+    </form>
+  </mat-card>
+  

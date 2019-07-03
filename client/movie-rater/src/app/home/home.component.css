@@ -1,0 +1,19 @@
+.left{
+    position: relative;
+    left: 0px;
+    top: 0px;
+    width: 30%;
+    height: 1200vh;
+    display: inline-block;
+    color: whitesmoke;
+    background-color: rgb(25, 71, 155);
+}
+.right{
+    position: absolute;
+    display: inline-block;
+    width: 70%;
+}
+.fulltabs{
+    width: 80%;
+    left: 10%;
+}

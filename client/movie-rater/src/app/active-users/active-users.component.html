@@ -1,0 +1,12 @@
+<h1>Recent</h1>
+<h4><mat-icon>verified_user</mat-icon>Active users</h4>
+<mat-list class="list">
+    <mat-list-item *ngFor="let user of users"  class="list">
+        <span>
+            <mat-icon>face</mat-icon>{{user.userName}}
+        </span>
+        <mat-divider></mat-divider>
+    </mat-list-item>
+    
+</mat-list>
+ 
