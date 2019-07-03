@@ -1,9 +1,8 @@
-import { UserComponent } from './../user/user.component';
-import { LoginComponent } from './../login/login.component';
+import { DataService } from './../data.service';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { AuthenticationService } from './../services/authentication.service';
-import { DataServiceService } from './../data-service.service';
+
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -14,7 +13,7 @@ import { Component, OnInit } from '@angular/core';
 export class ActiveUsersComponent implements OnInit {
 
   users: any[];
-  constructor(private dataService: DataServiceService, private auth: AuthenticationService,
+  constructor(private dataService: DataService, private auth: AuthenticationService,
               private router: Router, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
