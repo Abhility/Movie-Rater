@@ -1,0 +1,26 @@
+<h4 class="labels">Movie Info</h4>
+<input matInput #name class="search">
+<button mat-button color="primary" (click)="search(name.value)" class="b_search">Search</button>
+
+<!-- <mat-list *ngIf="available">
+    <mat-list-item *ngFor="let movie of movies">
+        <span>{{movie.title}}</span>
+    </mat-list-item>
+</mat-list> -->
+<mat-spinner class="spinner" *ngIf="loading"></mat-spinner>
+<p *ngIf="empty">No results found</p>
+
+<mat-card class="example-card" [hidden]="!available" *ngFor="let movie of movies" style="margin: 10px">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{movie.title}}</mat-card-title>
+        <mat-card-subtitle>Released on : {{movie.release_date}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" alt="Poster not found" width="300px" height="300px">
+    <mat-card-content>
+        <p>
+            {{movie.overview}}
+        </p>
+    </mat-card-content>
+</mat-card>
+<!-- <p class="labels" *ngIf="!available">Please type to search</p> -->

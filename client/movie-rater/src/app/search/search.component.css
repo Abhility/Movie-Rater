@@ -1,0 +1,23 @@
+.example-card img{
+    padding: 10px;
+}
+.search{
+    margin-top: 10px;
+    margin-right: 5px;
+    margin-left: 100px;
+    border-radius: 10px;
+    height: 40px;
+    outline: none;
+    padding: 5px;
+    width: 50%;
+}
+.b_search{
+   border: 1px solid white;
+   color: black;
+}
+.labels{
+    margin-left: 100px;
+}
+.spinner{
+    margin-left: 100px;
+}

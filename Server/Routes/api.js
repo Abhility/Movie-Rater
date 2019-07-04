@@ -118,7 +118,7 @@ router.get('/movies',verifyToken,(req,res) => {
     then(res => res.json()).
     then(json => {
         console.log(json); 
-         return res.status(200).send(json);}).catch(err => this.console.log(err));
+         res.status(200).send(json);}).catch(err => this.console.log(err));
     // return res.status(200).send({
     //     "movies": [
     //         {"name":"Misson Impossible"},

@@ -1,5 +1,5 @@
 <app-crousel></app-crousel>
-<app-active-users class="left" *ngIf="isLoggedIn()"></app-active-users>
+<app-search class="left" *ngIf="isLoggedIn()"></app-search>
 <mat-tab-group #tab  [class.fulltabs]="!isLoggedIn()" mat-align-tabs="center" (selectedTabChange)="tabChanged($event)" class="right">
         <mat-tab label="Comedy">
                 <app-genres [loading] = "dataLoading" [genreData] = "data"></app-genres>

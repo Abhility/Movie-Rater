@@ -18,7 +18,7 @@ import { NewMoviesComponent } from './new-movies/new-movies.component';
 import { GenresComponent } from './genres/genres.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { CarouselModule, WavesModule } from 'angular-bootstrap-md';
-import { ActiveUsersComponent } from './active-users/active-users.component';
+import { SearchComponent } from './search/search.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +32,7 @@ import { ActiveUsersComponent } from './active-users/active-users.component';
     GenresComponent,
     UserProfileComponent,
     CrouselComponent,
-    ActiveUsersComponent
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
