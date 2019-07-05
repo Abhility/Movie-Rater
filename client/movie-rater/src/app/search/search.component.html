@@ -1,16 +1,10 @@
-<h4 class="labels">Movie Info</h4>
-<input matInput #name class="search">
-<button mat-button color="primary" (click)="search(name.value)" class="b_search">Search</button>
-
-<!-- <mat-list *ngIf="available">
-    <mat-list-item *ngFor="let movie of movies">
-        <span>{{movie.title}}</span>
-    </mat-list-item>
-</mat-list> -->
-<mat-spinner class="spinner" *ngIf="loading"></mat-spinner>
+<input  #name class="search" placeholder="type here to search for a movie!">
+<button  mat-icon-button color="primary" (click)="search(name.value)" color="primary"><mat-icon>search</mat-icon></button>
+<!-- <mat-spinner class="spinner" *ngIf="loading"></mat-spinner> -->
+<img src="../../assets/line.gif" class="spinner" *ngIf="loading">
 <p *ngIf="empty">No results found</p>
 
-<mat-card class="example-card" [hidden]="!available" *ngFor="let movie of movies" style="margin: 10px">
+<mat-card class="example-card" [hidden]="loading" *ngFor="let movie of movies" style="margin: 10px">
     <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>{{movie.title}}</mat-card-title>

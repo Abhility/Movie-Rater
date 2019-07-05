@@ -1,3 +1,5 @@
+import { logging } from 'protractor';
+import { DataService } from './../data.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CrouselComponent implements OnInit {
 
-  constructor() { }
-
+  movies: any[];
+  constructor(private dataService: DataService) { }
+  loading = true;
   ngOnInit() {
+    this.dataService.trending().subscribe(
+      res => {
+         this.movies = res;
+         this.loading = false;
+      },
+      err => {
+          console.log(err);
+      }
+    );
   }
 
 }

@@ -65,7 +65,6 @@ router.post('/register',verifyToken,(req,res) => {
           return res.status(500).send(err);
         }
         else{
-            console.log(data);
             return res.status(200).send({"message": "successfully registerd"});
         }
     });
@@ -73,7 +72,6 @@ router.post('/register',verifyToken,(req,res) => {
 
 router.post('/login',verifyToken,(req,res) => {
     const userData = req.body;
-    console.log(userData);
     User.findOne({email: userData.email},(err,data) =>{
         if(err){
             return res.status(500).json({"error":err});
@@ -93,13 +91,11 @@ router.post('/login',verifyToken,(req,res) => {
 })
 
 router.get('/setup',(req,res) => {
-    console.log('SETUP');
     const token = jwt.sign({subject: 'movie-rater'},'setup-key');
     return res.status(200).send({token: token});
 });
 
 router.get('/users',verifyToken,verifyLoginToken,(req,res) => {
-    console.log('USERS');
     User.find({},(err,data) =>{
         if(err){
            return res.status(500).send(err);
@@ -108,33 +104,6 @@ router.get('/users',verifyToken,verifyLoginToken,(req,res) => {
     })
 })
 
-router.get('/checkLogin',verifyToken,verifyLoginToken,(req,res) => {
-    return res.status.send({authenticated: true});
-})
 
-router.get('/movies',verifyToken,(req,res) => {
-    console.log('MOVIES');
-    fetch('http://localhost:3000/movies').
-    then(res => res.json()).
-    then(json => {
-        console.log(json); 
-         res.status(200).send(json);}).catch(err => this.console.log(err));
-    // return res.status(200).send({
-    //     "movies": [
-    //         {"name":"Misson Impossible"},
-    //         {"name":"Die Hard"},
-    //         {"name":"Fast and Furious"},
-    //         {"name":"Avengers"},
-    //         {"name":"Misson Impossible"},
-    //         {"name":"Die Hard"},
-    //         {"name":"Fast and Furious"},
-    //         {"name":"Avengers"},
-    //         {"name":"Misson Impossible"},
-    //         {"name":"Die Hard"},
-    //         {"name":"Fast and Furious"},
-    //         {"name":"Avengers"}
-    //     ]
-    // });
-   
-})
 module.exports = router;
+

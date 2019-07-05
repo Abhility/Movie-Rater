@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       res => {
         this.auth.setToken('usertoken', res.usertoken);
         this.snackBar.open('You are successfully logged In', 'OK');
-        this.router.navigate(['/top-movies']);
+        this.router.navigate(['/home']);
       },
       err => {
         if (err instanceof HttpErrorResponse) {

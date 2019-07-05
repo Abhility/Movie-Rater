@@ -7,14 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./top-movies.component.css']
 })
 export class TopMoviesComponent implements OnInit {
-  link = 'https://i.ytimg.com/vi/RnCpVUjJgeI/maxresdefault.jpg';
+  loading = true;
   movies: any[];
 
   constructor(private genreService: GenresDataService) { }
 
   ngOnInit() {
-    this.genreService.getData().subscribe(res => {
+    this.loading = true;
+    this.genreService.getData('Action').subscribe(res => {
       this.movies = res;
+      this.loading = false;
       console.log(this.movies);
    }, err => {
       console.log(err);

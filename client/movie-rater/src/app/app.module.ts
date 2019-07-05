@@ -19,6 +19,7 @@ import { GenresComponent } from './genres/genres.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { CarouselModule, WavesModule } from 'angular-bootstrap-md';
 import { SearchComponent } from './search/search.component';
+import { FooterComponent } from './footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +34,7 @@ import { SearchComponent } from './search/search.component';
     UserProfileComponent,
     CrouselComponent,
     SearchComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

@@ -14,10 +14,10 @@ export class SearchComponent implements OnInit {
   loading = false;
   constructor(private dataService: DataService) { }
 
-  search(name: string) {
+  search(name: any) {
     console.log(name);
     this.loading = true;
-    this.available = false
+    this. empty = false;
     this.dataService.searchMovie(name).subscribe(
       res => {
          this.movies = res;
@@ -25,7 +25,6 @@ export class SearchComponent implements OnInit {
              this.empty = true;
          }
          this.loading = false;
-         this.available = true;
       },
       err => {
           console.log(err);
