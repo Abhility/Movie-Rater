@@ -6,7 +6,7 @@
     height: auto;
     display: block;
     color: whitesmoke;
-    border-right: 2px solid black;
+    /* border-right: 2px solid black; */
 }
 .right{
     position: absolute;

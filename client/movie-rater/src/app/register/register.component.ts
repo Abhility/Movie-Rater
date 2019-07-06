@@ -40,11 +40,11 @@ export class RegisterComponent implements OnInit {
   };
     this.auth.register(user).subscribe(
       res => {
-        this.snackBar.open('You are succesfully registered', 'OK');
+        this.snackBar.open('You are succesfully registered', 'OK', {duration: 2000});
         this.router.navigate(['/home']);
       },
       err => {
-        this.snackBar.open('Server error occured! Please Try again', 'OK');
+        this.snackBar.open('Server error occured! Please Try again', 'OK', {duration: 2000});
       }
     );
   }

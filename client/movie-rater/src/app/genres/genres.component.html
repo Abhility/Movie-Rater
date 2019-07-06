@@ -11,7 +11,8 @@
            {{movie.overview}}
         </p>
         <mat-card-actions>
-                <button mat-icon-button (click)="toogleWatch()"><mat-icon title="Add to watchlist">{{watchlist}}</mat-icon></button>
+                <button *ngIf="add" mat-icon-button (click)="addToWatchList(movie.id)"><mat-icon title="Add to watchlist">{{addIcon}}</mat-icon></button>
+                <button *ngIf="!add" mat-icon-button (click)="removeFromWatchList(movie.id)"><mat-icon title="Remove from watchlist">{{removeIcon}}</mat-icon></button>
                 <span class="rating"><mat-icon>star</mat-icon></span>
             </mat-card-actions>
     </mat-card-content>

@@ -1,58 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
-const fetch = require('node-fetch');
-//DB Connection
-const database = 'mongodb+srv://admin:admin@cluster0-oueoz.mongodb.net/test?retryWrites=true&w=majority'
-mongoose.connect(database, { useNewUrlParser: true, dbName: 'movie-rater' },err => {
-    if(err){
-        console.log(err);
-    }
-    else{
-        console.log('Connected to database');
-    }
-});
-
-
-function generateToken(data){
-   const token = jwt.sign({subject : data._id},'secretkey');
-   return token;
-}
-
-function verifyToken(req,res,next){
-    if(!req.headers.authorization){
-        return res.status(401).send('Unauthorized request');
-    }
-    let token = req.headers.authorization.split(' ')[1];
-    console.log(token);
-    if(token == 'null'){
-        return res.status(401).send('Unauthorized request');
-    }
-    jwt.verify(token,'setup-key',(err,data) => {
-          if(err){
-            return res.status(401).send('Unauthorized request');
-          }
-   });
-    next();
-}
-
-function verifyLoginToken(req,res,next){
-    if(!req.headers.usertoken){
-        return res.status(401).send('Unauthorized request');
-    }
-    let token = req.headers.usertoken;
-    if(token == 'null'){
-        return res.status(401).send('Unauthorized request');
-    }
-    jwt.verify(token,'secretkey',(err,data) => {
-        if(err){
-          return res.status(401).send('Unauthorized request');
-        }
-    });
-    next();
-}
+const {generateToken,verifyLoginToken,verifyToken} = require('../jwtToken');
 
 //API routes
 router.post('/register',verifyToken,(req,res) => {
@@ -91,7 +41,7 @@ router.post('/login',verifyToken,(req,res) => {
 })
 
 router.get('/setup',(req,res) => {
-    const token = jwt.sign({subject: 'movie-rater'},'setup-key');
+    const token = jwt.sign({subject: 'movie-rater'},process.env.SETUP_KEY);
     return res.status(200).send({token: token});
 });
 

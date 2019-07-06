@@ -8,11 +8,11 @@ export class DataService {
   constructor(private http: HttpClient) { }
 
   searchMovie(name: string) {
-    const headers = new HttpHeaders({ name: name });
+    const headers = new HttpHeaders({ name });
     return this.http.get<any>(this.API_URL + '/search', {headers});
   }
 
-  trending(){
+  trending() {
     return this.http.get<any>(this.API_URL + '/trending');
   }
 }

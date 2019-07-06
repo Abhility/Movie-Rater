@@ -1,4 +1,4 @@
-import { DataService } from './../data.service';
+import { DataService } from '../services/data.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,15 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-
   movies: any[];
-  available = false;
   empty = false;
   loading = false;
+  blank = false;
   constructor(private dataService: DataService) { }
 
   search(name: any) {
-    console.log(name);
+    if (name.trim().length === 0) {
+       this.blank = true;
+       return;
+    }
+    this.blank = false;
     this.loading = true;
     this. empty = false;
     this.dataService.searchMovie(name).subscribe(
@@ -28,7 +31,7 @@ export class SearchComponent implements OnInit {
       },
       err => {
           console.log(err);
-          this.available = false;
+          this.loading = false;
       }
     );
   }

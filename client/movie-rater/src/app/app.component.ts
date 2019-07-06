@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   constructor(private auth: AuthenticationService) {}
 
   ngOnInit() {
+    if (this.auth.getToken('token') == null) {
     this.auth.setup().subscribe(
       data => {
           this.auth.setToken('token', data.token);
@@ -22,5 +23,8 @@ export class AppComponent implements OnInit {
          this.serverStatus = false;
       }
       );
+    } else {
+      this.serverStatus = true;
+    }
   }
 }

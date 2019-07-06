@@ -3,14 +3,29 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const api = require('./Routes/api');
 const movies = require('./Routes/movies');
+const watchlist = require('./Routes/watchlist');
 const PORT = process.env.PORT || 5000;
-
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 const app = express();
+
+dotenv.config();
+//DB Connection
+const database = process.env.DB_CONNECTION;
+mongoose.connect(database, { useNewUrlParser: true, dbName: 'movie-rater' },err => {
+    if(err){
+        console.log(err);
+    }
+    else{
+        console.log('Connected to database');
+    }
+});
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use(api);
-app.use(movies);
+app.use('/movie-info',api);
+app.use('/movie-info',movies);
+app.use('/movie-info',watchlist);
 
 
 app.listen(PORT,() => {
