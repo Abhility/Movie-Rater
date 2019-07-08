@@ -1,18 +1,19 @@
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, ErrorStateMatcher } from '@angular/material';
 import {  Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, AbstractControl} from '@angular/forms';
 import { AuthenticationService } from '../services/authentication.service';
-
+import {PasswordError} from './error';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
+
 export class RegisterComponent implements OnInit {
   constructor(private fb: FormBuilder, private auth: AuthenticationService,
               private router: Router, private snackBar: MatSnackBar) {}
-
+  passwordError = new PasswordError();
   registerForm = this.fb.group({
     userName: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
     email: ['', Validators.compose([
@@ -20,17 +21,20 @@ export class RegisterComponent implements OnInit {
       Validators.email
     ])],
     password: ['', [Validators.required, Validators.minLength(6)]],
-    confirmPassword: ['', Validators.required]
-  }, this.passwordValidator);
+    confirmPassword: ['']
+  }, {validator: this.passwordValidator});
 
-  passwordValidator(passwords: FormGroup) {
-    console.log(passwords.get('confirmPassword').value);
-    if (passwords.get('password').value !== passwords.get('confirmPassword').value) {
+  passwordValidator(control: AbstractControl) {
+    const password = control.get('password');
+    const confirmPassword = control.get('confirmPassword');
+    if (password.pristine || confirmPassword .pristine) {
+        return null;
+    }
+    if (password && confirmPassword && password.value !== confirmPassword.value) {
       return { mismatch : true };
     }
     return null;
   }
-
   onSubmit() {
 
     const user = {

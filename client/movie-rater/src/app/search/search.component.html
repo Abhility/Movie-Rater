@@ -1,5 +1,7 @@
 <input  #name class="search" placeholder="type here to search for a movie!">
-<button  mat-icon-button color="primary" (click)="search(name.value)" color="primary"><mat-icon>search</mat-icon></button>
+<div class="search_button" >
+<button mat-icon-button color="primary" (click)="search(name.value)" color="primary"><mat-icon>search</mat-icon></button>
+</div>
 <!-- <mat-spinner class="spinner" *ngIf="loading"></mat-spinner> -->
 <img src="../../assets/line.gif" class="spinner" *ngIf="loading">
 <p *ngIf="empty">No results found</p>

@@ -45,12 +45,12 @@ router.get('/setup',(req,res) => {
     return res.status(200).send({token: token});
 });
 
-router.get('/users',verifyToken,verifyLoginToken,(req,res) => {
-    User.find({},(err,data) =>{
+router.get('/user',verifyToken,verifyLoginToken,(req,res) => {
+    User.findOne({_id: req.userId},(err,data) =>{
         if(err){
            return res.status(500).send(err);
         }
-         return res.status(200).send(data);
+         return res.status(200).send({userName: data.userName, email: data.email});
     })
 })
 

@@ -15,4 +15,9 @@ export class DataService {
   trending() {
     return this.http.get<any>(this.API_URL + '/trending');
   }
+
+  getMovieWithMovieId(movieId: string){
+    return this.http.get<any>(this.API_URL + `/getmovie/${movieId}`);
+  }
+
 }

@@ -15,6 +15,9 @@ export class InteractionService {
   }
 
   removeFromWatchList(movieId: string) {
-    return this.http.delete(this.API_URL + `/removefromwatchlist/${movieId}`);
+     return this.http.delete(this.API_URL + `/removefromwatchlist/${movieId}`);
+  }
+  getWatchList() {
+    return this.http.get<any>(this.API_URL + '/getwatchlist');
   }
 }

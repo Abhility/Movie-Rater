@@ -7,16 +7,19 @@ function generateToken(data){
  
  function verifyToken(req,res,next){
      if(!req.headers.authorization){
-         return res.status(401).send('Unauthorized request');
+          res.status(401).send('Unauthorized request');
+          res.end();
      }
      let token = req.headers.authorization.split(' ')[1];
      console.log(token);
      if(token == 'null'){
-         return res.status(401).send('Unauthorized request');
+         res.status(401).send('Unauthorized request');
+         res.end();
      }
-     jwt.verify(token,'setup-key',(err,data) => {
+     jwt.verify(token,process.env.SETUP_KEY,(err,data) => {
            if(err){
-             return res.status(401).send('Unauthorized request');
+             res.status(401).send('Unauthorized request');
+             res.end();
            }
     });
      next();
@@ -24,15 +27,18 @@ function generateToken(data){
  
  function verifyLoginToken(req,res,next){
      if(!req.headers.usertoken){
-         return res.status(401).send('Unauthorized request');
+         res.status(401).send('Unauthorized request');
+         res.end();
      }
      let token = req.headers.usertoken;
      if(token == 'null'){
-         return res.status(401).send('Unauthorized request');
+       res.status(401).send('Unauthorized request');
+       res.end();
      }
-     jwt.verify(token,'secretkey',(err,data) => {
+     jwt.verify(token,process.env.USER_KEY,(err,data) => {
          if(err){
-           return res.status(401).send('Unauthorized request');
+           res.status(401).send('Unauthorized request');
+           res.end();
          }
          if(data){
              req.userId = data.subject;

@@ -14,7 +14,7 @@ function getGenreId(name) {
 
 router.get('/search',verifyToken,verifyLoginToken,(req, res) => {
     var name = req.headers.name;
-    fetch(`https://api.themoviedb.org/3/search/movie?api_key=cd8fecae6979571c97966e56c38b6a8b&language=en-US&query=${name}`).then(response => response.json())
+    fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.API_KEY}&language=en-US&query=${name}`).then(response => response.json())
         .then(result => {
             res.status(200).send(result.results);
         }).
@@ -22,7 +22,7 @@ router.get('/search',verifyToken,verifyLoginToken,(req, res) => {
 });
 
 router.get('/trending',verifyToken,(req, res) => {
-    fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=cd8fecae6979571c97966e56c38b6a8b`).then(response => response.json())
+    fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.API_KEY}`).then(response => response.json())
         .then(result => {
             res.status(200).send(result.results);
         }).
@@ -32,12 +32,25 @@ router.get('/trending',verifyToken,(req, res) => {
 router.get('/genre',verifyToken,(req, res) => {
     let genre = req.headers.genre;
     const genreId = getGenreId(genre);
-    fetch(`https://api.themoviedb.org/3/discover/movie?api_key=cd8fecae6979571c97966e56c38b6a8b&sort_by=popularity.desc&with_genres=${genreId}`).then(response => response.json())
+    fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.API_KEY}&sort_by=popularity.desc&with_genres=${genreId}`).then(response => response.json())
         .then(result => {
             console.log(result);
             res.status(200).send(result.results);
         }).
         catch(err => console.log(err))
 });
+
+
+router.get('/getmovie/:movieId', verifyToken, verifyLoginToken, (req, res) => {
+    const movieId =req.params.movieId;
+    console.log(movieId);
+    fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.API_KEY}`).then(response => response.json())
+        .then(result => {
+            console.log(result);
+            res.status(200).send(result.results);
+        }).
+        catch(err => console.log(err))
+  });
+  
 
 module.exports = router;

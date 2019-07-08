@@ -15,6 +15,10 @@ const user = new Schema({
         type: String,
         minlength: 6,
         require: true
+    },
+    date :{
+        type: Date,
+        default: Date.now()
     }
 });
 

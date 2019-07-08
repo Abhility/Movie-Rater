@@ -23,18 +23,6 @@ export class AuthenticationService  {
     return this.http.post<any>(this.API_URL + '/login', userData);
   }
 
-  /*checkLogin() {
-    return this.http.get<any>(this.API_URL + '/checkLogin').toPromise().then(
-      res =>{
-        this.status = true;
-      },
-      err =>{
-        this.status = false;
-      }
-    );
-    
-  }*/
-
   getToken(name: string) {
   return localStorage.getItem(name);
   }
@@ -50,6 +38,10 @@ export class AuthenticationService  {
 
  isLoggedIn() {
    return !!localStorage.getItem('usertoken');
+ }
+
+ getUserInfo() {
+   return this.http.get<any>(this.API_URL + '/user');
  }
 
 }

@@ -14,10 +14,12 @@
     width: 60%;
     left: 40%;
     top: 815px;
+    border-left: 2px solid black
 }
 .fulltabs{
     width: 80%;
     left: 10%;
+    border: none;
 }
 .prog{
     position: relative;

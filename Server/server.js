@@ -12,7 +12,7 @@ const app = express();
 dotenv.config();
 //DB Connection
 const database = process.env.DB_CONNECTION;
-mongoose.connect(database, { useNewUrlParser: true, dbName: 'movie-rater' },err => {
+mongoose.connect(database, { useNewUrlParser: true, dbName: 'movie-rater'},err => {
     if(err){
         console.log(err);
     }

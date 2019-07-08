@@ -27,7 +27,6 @@ export class GenresComponent implements OnInit {
     this.add = false;
     this.interact.addToWatchList(movieId).subscribe(
       res => {
-        console.log(res);
         this.add = false;
         this.snackbar.open('Added to watchlist', 'OK', { duration: 2000 });
       },
@@ -46,7 +45,6 @@ export class GenresComponent implements OnInit {
     this.add = true;
     this.interact.removeFromWatchList(movieId).subscribe(
       res => {
-        console.log(res);
         this.add = true;
         this.snackbar.open('Removed from watchlist', 'OK', { duration: 2000 });
       },
