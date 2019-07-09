@@ -1,14 +1,26 @@
-<div class="profile">
-    <h3>Hi! {{userdata.userName}}</h3>
-    <h5>Email : {{userdata.email}}</h5>
-    <!-- <p>Joined on {{userdata.date | date}}</p> -->
+<div class="container">
+  <div class="box1">
+    <div class="logo">{{ initial }}</div>
+    <div class="profile">
+      <h3>Hi! {{ userdata.userName }}</h3>
+      <h5>Email : {{ userdata.email }}</h5>
+      <h6>Joined on {{ userdata.date | date }}</h6>
+    </div>
+  </div>
+  <div class="box2">
+    <table class="watchlist" *ngIf="present">
+      <tr>
+        <th>Name</th>
+        <th>Added On</th>
+        <th>Actions</th>
+      </tr>
+      <tr *ngFor="let movie of watchlist.list">
+        <td>{{ movie }}</td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+
+    <h5 *ngIf="!present">No movies in watchlist</h5>
+  </div>
 </div>
-<table class="watchlist">
-    <tr>
-    <th>Name</th>
-    <th>Added On</th>
-    <th>Actions</th>
-    </tr>
-</table>
-<h3>{{movies | json}}</h3>
-<h3>{{watchlist | json}}</h3>

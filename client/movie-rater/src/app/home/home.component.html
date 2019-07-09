@@ -1,27 +1,31 @@
 <app-crousel></app-crousel>
-<app-search class="left" *ngIf="isLoggedIn()"></app-search>
-<mat-tab-group #tab  [class.fulltabs]="!isLoggedIn()" mat-align-tabs="center" (selectedTabChange)="tabChanged($event)" class="right">
-        <mat-tab label="Comedy">
-                <app-genres [loading] = "dataLoading" [genreData] = "data"></app-genres>
-        </mat-tab>
-        <mat-tab label="Action">
-                <app-genres [loading] = "dataLoading"  [genreData] = "data"></app-genres>
-        </mat-tab>
-        <mat-tab label="Romance">
-                <app-genres [loading] = "dataLoading"  [genreData] = "data"></app-genres>
-        </mat-tab>
-        <mat-tab label="Mystery">
-                <app-genres [loading] = "dataLoading"  [genreData] = "data"></app-genres>
-        </mat-tab>
-        <mat-tab label="Thriller">
-                <app-genres [loading] = "dataLoading"  [genreData] = "data"></app-genres>
-        </mat-tab>
-        <mat-tab label="War">
-                <app-genres [loading] = "dataLoading"  [genreData] = "data"></app-genres>
-        </mat-tab>
-        <mat-tab label="Horror">
-                <app-genres [loading] = "dataLoading"  [genreData] = "data"></app-genres>
-        </mat-tab>
+<app-search class="left"></app-search>
+<mat-tab-group
+  #tab
+  mat-align-tabs="center"
+  (selectedTabChange)="tabChanged($event)"
+  class="right"
+>
+  <mat-tab label="Comedy">
+    <app-genres [loading]="dataLoading" [genreData]="data"></app-genres>
+  </mat-tab>
+  <mat-tab label="Action">
+    <app-genres [loading]="dataLoading" [genreData]="data"></app-genres>
+  </mat-tab>
+  <mat-tab label="Romance">
+    <app-genres [loading]="dataLoading" [genreData]="data"></app-genres>
+  </mat-tab>
+  <mat-tab label="Mystery">
+    <app-genres [loading]="dataLoading" [genreData]="data"></app-genres>
+  </mat-tab>
+  <mat-tab label="Thriller">
+    <app-genres [loading]="dataLoading" [genreData]="data"></app-genres>
+  </mat-tab>
+  <mat-tab label="War">
+    <app-genres [loading]="dataLoading" [genreData]="data"></app-genres>
+  </mat-tab>
+  <mat-tab label="Horror">
+    <app-genres [loading]="dataLoading" [genreData]="data"></app-genres>
+  </mat-tab>
 </mat-tab-group>
-<!-- <mat-spinner *ngIf="dataLoading" class="prog"></mat-spinner> -->
-<img *ngIf="dataLoading" class="prog" src="../../assets/cube.gif">
+<img *ngIf="dataLoading" class="prog" src="../../assets/cube.gif" />

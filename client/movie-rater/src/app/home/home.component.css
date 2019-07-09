@@ -1,28 +1,22 @@
-.left{
-    position: relative;
-    left: 0px;
-    top: 0px;
-    width: 40%;
-    height: auto;
-    display: block;
-    color: whitesmoke;
-    /* border-right: 2px solid black; */
+.left {
+  position: relative;
+  left: 0px;
+  top: 0px;
+  width: 40%;
+  height: auto;
+  display: block;
+  color: whitesmoke;
 }
-.right{
-    position: absolute;
-    display: block;
-    width: 60%;
-    left: 40%;
-    top: 815px;
-    border-left: 2px solid black
+.right {
+  position: absolute;
+  display: block;
+  width: 60%;
+  left: 40%;
+  top: 815px;
+  border-left: 2px solid black;
 }
-.fulltabs{
-    width: 80%;
-    left: 10%;
-    border: none;
-}
-.prog{
-    position: relative;
-    left: 50%;
-    top: 80px;
+.prog {
+  position: relative;
+  left: 65%;
+  top: 80px;
 }

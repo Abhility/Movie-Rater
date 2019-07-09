@@ -1,24 +1,24 @@
-.example-card img{
-    padding: 10px;
+.example-card img {
+  padding: 10px;
 }
-.search{
-    height: 49px;
-    outline: none;
-    padding: 5px;
-    width: 90%;
-    border: none;
-    border-bottom: 2px solid black;
+.search {
+  height: 49px;
+  outline: none;
+  padding: 5px;
+  width: 90%;
+  border: none;
+  border-bottom: 2px solid black;
 }
-.labels{
-    margin-left: 50px;
-    color:  red;
+.labels {
+  margin-left: 50px;
+  color: red;
 }
-.spinner{
-    margin-left: 100px;
+.spinner {
+  margin-left: 100px;
 }
-.search_button{
-    border-bottom: 2px solid black;
-    display: inline-block;
-    width: 50px;
-    height: 44px;
+.search_button {
+  border-bottom: 2px solid black;
+  display: inline-block;
+  width: 50px;
+  height: 44px;
 }
