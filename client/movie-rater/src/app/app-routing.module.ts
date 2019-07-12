@@ -1,43 +1,44 @@
-import { UserProfileComponent } from './user-profile/user-profile.component';
-import { AuthGuard } from './services/auth.guard';
-import { HomeComponent } from './home/home.component';
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule, CanActivate } from '@angular/router';
-import { UserComponent } from './user/user.component';
-import { TopMoviesComponent } from './top-movies/top-movies.component';
-import { NewMoviesComponent } from './new-movies/new-movies.component';
+import { UserComponent } from "./components/user/user.component";
+import { TopMoviesComponent } from "./components/top-movies/top-movies.component";
+import { TrailersComponent } from "./components/trailers/trailers.component";
+import { HomeComponent } from "./components/home/home.component";
+import { UserProfileComponent } from "./components/user-profile/user-profile.component";
+import { RouterModule, Routes } from "@angular/router";
+import { NgModule } from "@angular/core";
+import { AuthGuard } from "./services/auth.guard";
+
 const routes: Routes = [
   {
-    path: 'login',
+    path: "login",
     component: UserComponent
   },
   {
-    path: 'top-movies',
+    path: "top-movies",
     component: TopMoviesComponent,
     canActivate: [AuthGuard]
   },
   {
-    path: 'new-releases',
-    component: NewMoviesComponent
+    path: "trailers",
+    component: TrailersComponent
   },
   {
-    path: 'home',
-    component: HomeComponent,
+    path: "home",
+    component: HomeComponent
   },
   {
-    path: 'profile',
+    path: "profile",
     component: UserProfileComponent,
     canActivate: [AuthGuard]
   },
   {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },
+    path: "",
+    redirectTo: "home",
+    pathMatch: "full"
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

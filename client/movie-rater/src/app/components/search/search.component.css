@@ -1,0 +1,44 @@
+.example-card img {
+  padding: 10px;
+}
+.search {
+  height: 49px;
+  outline: none;
+  padding: 5px;
+  width: 90%;
+  border: none;
+  position: sticky;
+  top: 0px;
+  z-index: 10;
+}
+.labels {
+  margin-left: 50px;
+  color: red;
+}
+.spinner {
+  margin-left: 200px;
+}
+.search_button {
+  display: inline-block;
+  width: 10%;
+  height: 50px;
+  position: sticky;
+  top: 0px;
+  z-index: 10;
+  background-color: white;
+}
+
+@media (max-width: 1250px) {
+  .search {
+    width: 70%;
+  }
+  .search_button {
+    width: 30%;
+  }
+}
+@media (max-width: 500px) {
+  .search {
+    width: 40%;
+    width: 60%;
+  }
+}

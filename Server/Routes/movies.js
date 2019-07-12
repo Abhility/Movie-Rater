@@ -32,7 +32,7 @@ function getGenreId(name) {
   }
 }
 
-router.get("/search", verifyToken, verifyLoginToken, (req, res) => {
+router.get("/search", verifyToken, (req, res) => {
   var name = req.headers.name;
   fetch(
     `https://api.themoviedb.org/3/search/movie?api_key=${
@@ -41,7 +41,7 @@ router.get("/search", verifyToken, verifyLoginToken, (req, res) => {
   )
     .then(response => response.json())
     .then(result => {
-      res.status(200).send(result.results);
+      return res.status(200).send(result.results);
     })
     .catch(err => console.log(err));
 });
@@ -54,7 +54,7 @@ router.get("/trending", verifyToken, (req, res) => {
   )
     .then(response => response.json())
     .then(result => {
-      res.status(200).send(result.results);
+      return res.status(200).send(result.results);
     })
     .catch(err => console.log(err));
 });
@@ -69,7 +69,7 @@ router.get("/genre", verifyToken, (req, res) => {
   )
     .then(response => response.json())
     .then(result => {
-      res.status(200).send(result.results);
+      return res.status(200).send(result.results);
     })
     .catch(err => console.log(err));
 });
@@ -84,7 +84,38 @@ router.get("/getmovie/:movieId", verifyToken, verifyLoginToken, (req, res) => {
   )
     .then(response => response.json())
     .then(result => {
-      res.status(200).send(result.results);
+      return res.status(200).send(result.results);
+    })
+    .catch(err => console.log(err));
+});
+
+router.get(
+  "/getmovies/now_playing",
+  verifyToken,
+  verifyLoginToken,
+  (req, res) => {
+    fetch(
+      `https://api.themoviedb.org/3/movie/now_playing?api_key=${
+        process.env.API_KEY
+      }&language=en-US&page=1&region=IN`
+    )
+      .then(response => response.json())
+      .then(result => {
+        return res.status(200).send(result.results);
+      })
+      .catch(err => console.log(err));
+  }
+);
+
+router.get("/getmovies/upcoming", verifyToken, verifyLoginToken, (req, res) => {
+  fetch(
+    `https://api.themoviedb.org/3/movie/upcoming?api_key=${
+      process.env.API_KEY
+    }&page=1&region=IN`
+  )
+    .then(response => response.json())
+    .then(result => {
+      return res.status(200).send(result.results);
     })
     .catch(err => console.log(err));
 });

@@ -1,0 +1,41 @@
+<input #name class="search" placeholder="type here to search!" />
+<div class="search_button">
+  <button
+    mat-icon-button
+    color="primary"
+    (click)="search(name.value)"
+    color="primary"
+  >
+    <mat-icon>search</mat-icon>
+  </button>
+</div>
+<img src="../../assets/line.gif" class="spinner" *ngIf="loading" />
+<p class="labels" *ngIf="empty">No results found</p>
+
+<mat-card
+  class="example-card"
+  [hidden]="loading || blank"
+  *ngFor="let movie of movies"
+  style="margin: 10px"
+>
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{ movie.title }}</mat-card-title>
+    <mat-card-subtitle
+      >Released on : {{ movie.release_date }}</mat-card-subtitle
+    >
+  </mat-card-header>
+  <img
+    mat-card-image
+    src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}"
+    alt="Poster not found"
+    width="300px"
+    height="300px"
+  />
+  <mat-card-content>
+    <p>
+      {{ movie.overview }}
+    </p>
+  </mat-card-content>
+</mat-card>
+<p class="labels" *ngIf="blank">Please type a query to search</p>

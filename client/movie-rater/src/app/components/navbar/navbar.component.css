@@ -1,0 +1,19 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.text {
+  position: relative;
+  top: 3px;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+  }
+}

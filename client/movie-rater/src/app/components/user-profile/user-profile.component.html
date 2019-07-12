@@ -1,0 +1,35 @@
+<div class="container" *ngIf="!loading">
+  <div class="box1">
+    <div class="logo">{{ initial }}</div>
+    <div class="profile">
+      <h3>Hi! {{ userdata.userName }}</h3>
+      <h5>Email : {{ userdata.email }}</h5>
+      <h6>Joined on {{ userdata.date | date }}</h6>
+    </div>
+  </div>
+  <mat-tab-group #tab class="box2" (selectedTabChange)="tabChanged($event)">
+    <mat-tab label="Watchlist">
+      <table class="watchlist" *ngIf="present">
+        <tr>
+          <th>Name</th>
+          <th>Added On</th>
+          <th>Actions</th>
+        </tr>
+        <tr *ngFor="let movie of watchlist.list">
+          <td>{{ movie }}</td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+
+      <h5 *ngIf="!present">No movies in watchlist</h5>
+    </mat-tab>
+    <mat-tab label="Now Showing">
+      <app-nowplaying [data]="data"></app-nowplaying>
+    </mat-tab>
+    <mat-tab label="Upcoming">
+      <app-nowplaying [data]="data"></app-nowplaying>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+<img class="load" *ngIf="loading" src="../../assets/loader.gif" />

@@ -1,20 +1,30 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-body{
-    margin: 0;
-    height: 100%;
+body {
+  margin: 0;
+  height: 100%;
 }
-html,.root{
-    height: 100%;
+html,
+.root {
+  height: 100%;
 }
-button:focus,span{
-    outline:0;
+button:focus,
+span {
+  outline: 0;
 }
-span{
-    outline:0;
-    cursor: pointer;
+span {
+  outline: 0;
+  cursor: pointer;
 }
 /* 
 deeppurple-amber.css
 indigo-pink.css
 pink-bluegrey.css
 purple-green.css */
+body::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgba(18, 15, 184, 0.794);
+  outline: none;
+}

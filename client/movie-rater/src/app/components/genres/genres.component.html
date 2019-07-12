@@ -1,0 +1,34 @@
+<mat-card class="movie" *ngFor="let movie of data" [hidden]="loading">
+  <mat-card-header class="card-header">
+    <mat-card-title>{{ movie.title }}</mat-card-title>
+    <mat-card-subtitle>{{ movie.release_date }}</mat-card-subtitle>
+  </mat-card-header>
+  <img
+    mat-card-image
+    src="https://image.tmdb.org/t/p/original{{ movie.poster_path }}"
+    alt="Photo of a Shiba Inu"
+    class="card-image"
+  />
+  <mat-card-content class="card-content">
+    <p>
+      {{ movie.overview }}
+    </p>
+    <mat-card-actions class="actions">
+      <button
+        *ngIf="add"
+        mat-icon-button
+        (click)="addToWatchList(movie.id, $event)"
+      >
+        <mat-icon title="Add to watchlist">{{ addIcon }}</mat-icon>
+      </button>
+      <button
+        *ngIf="!add"
+        mat-icon-button
+        (click)="removeFromWatchList(movie.id)"
+      >
+        <mat-icon title="Remove from watchlist">{{ removeIcon }}</mat-icon>
+      </button>
+      <span class="rating"><mat-icon>star</mat-icon></span>
+    </mat-card-actions>
+  </mat-card-content>
+</mat-card>

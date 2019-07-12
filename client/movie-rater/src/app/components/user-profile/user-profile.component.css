@@ -1,0 +1,70 @@
+.box1 {
+  grid-area: box1;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: rgba(18, 18, 150, 0.801);
+  width: 100%;
+}
+.box2 {
+  grid-area: box2;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+}
+
+.container {
+  display: grid;
+  height: 100vh;
+  margin-top: 10px;
+  grid-template-areas: "box1 box1" "box2 box2";
+  margin: 5px;
+  margin-left: 70px;
+}
+.logo {
+  color: rgba(9, 9, 121, 0.801);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 120px;
+  background-color: white;
+  font-size: 80px;
+  font-weight: bold;
+  height: 150px;
+  width: 150px;
+}
+
+.watchlist,
+tr,
+th,
+td {
+  border: 2px solid black;
+  border-collapse: collapse;
+}
+
+.load {
+  position: absolute;
+  left: 45%;
+  top: 50%;
+}
+@media (max-width: 1000px) {
+  .container {
+    grid-template-areas: "box1" "box2";
+  }
+  .box1 {
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    justify-self: center;
+    position: absolute;
+    left: 5px;
+    padding: 20px;
+  }
+  .box2 {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-self: center;
+  }
+}
