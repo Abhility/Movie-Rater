@@ -1,4 +1,9 @@
-<div class="container" *ngIf="!loading">
+<div
+  class="container"
+  *ngIf="
+    !loadingUser && !loadingWatchList && !loadingUpcoming && !loadingNowPlaying
+  "
+>
   <div class="box1">
     <div class="logo">{{ initial }}</div>
     <div class="profile">
@@ -7,9 +12,19 @@
       <h6>Joined on {{ userdata.date | date }}</h6>
     </div>
   </div>
-  <mat-tab-group #tab class="box2" (selectedTabChange)="tabChanged($event)">
+  <mat-tab-group
+    #tab
+    class="box2"
+    (selectedTabChange)="tabChanged($event)"
+    *ngIf="
+      !loadingUser &&
+      !loadingWatchList &&
+      !loadingUpcoming &&
+      !loadingNowPlaying
+    "
+  >
     <mat-tab label="Watchlist">
-      <table class="watchlist" *ngIf="present">
+      <!-- <table class="watchlist" *ngIf="present">
         <tr>
           <th>Name</th>
           <th>Added On</th>
@@ -20,8 +35,9 @@
           <td></td>
           <td></td>
         </tr>
-      </table>
+      </table> -->
 
+      <app-nowplaying [data]="data"></app-nowplaying>
       <h5 *ngIf="!present">No movies in watchlist</h5>
     </mat-tab>
     <mat-tab label="Now Showing">
@@ -32,4 +48,10 @@
     </mat-tab>
   </mat-tab-group>
 </div>
-<img class="load" *ngIf="loading" src="../../assets/loader.gif" />
+<img
+  class="load"
+  *ngIf="
+    loadingUser || loadingWatchList || loadingUpcoming || loadingNowPlaying
+  "
+  src="../../assets/loader.gif"
+/>

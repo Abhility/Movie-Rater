@@ -30,23 +30,21 @@ export class GenresComponent implements OnInit {
   @Input() loading: boolean;
 
   addToWatchList(movieId: string, event) {
-    console.log("movieID: " + movieId);
-    console.log(event);
-    // if (!this.auth.getToken('usertoken')) {
-    //   this.router.navigate(['/login']);
-    //   return;
-    // }
-    // this.add = false;
-    // this.interact.addToWatchList(movieId).subscribe(
-    //   res => {
-    //     this.add = false;
-    //     this.snackbar.open('Added to watchlist', 'OK', { duration: 2000 });
-    //   },
-    //   err => {
-    //     alert('unauthorized');
-    //     console.log(err);
-    //   }
-    // );
+    if (!this.auth.getToken("usertoken")) {
+      this.router.navigate(["/login"]);
+      return;
+    }
+    this.add = false;
+    this.interact.addToWatchList(movieId).subscribe(
+      res => {
+        this.add = false;
+        this.snackbar.open("Added to watchlist", "OK", { duration: 2000 });
+      },
+      err => {
+        alert("unauthorized");
+        console.log(err);
+      }
+    );
   }
 
   removeFromWatchList(movieId: string) {

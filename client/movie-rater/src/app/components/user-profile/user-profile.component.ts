@@ -18,11 +18,13 @@ export class UserProfileComponent implements OnInit {
 
   userdata: any;
   watchlist: any[];
-  movies: any[];
   upcoming: any[];
   initial: any;
   present: boolean;
-  loading = true;
+  loadingUser = true;
+  loadingWatchList = true;
+  loadingUpcoming = true;
+  loadingNowPlaying = true;
   list: any[];
   data: any[];
   nowPlaying: any[];
@@ -30,26 +32,31 @@ export class UserProfileComponent implements OnInit {
   tabChanged(tabChangeEvent: MatTabChangeEvent) {
     const tab = tabChangeEvent.index;
     console.log(tab);
+    if (tab === 0) {
+      this.data = this.watchlist;
+    }
     if (tab === 1) {
       this.data = this.nowPlaying;
     }
     if (tab === 2) {
       this.data = this.upcoming;
     }
+    console.log("DATA:: " + this.data);
   }
-  ngOnInit(): void {
+  async ngOnInit() {
     this.getUserInfo();
-    this.getWatchList();
     this.getNowPlaying();
     this.getUpcoming();
+    this.getWatchList();
+    this.data = this.watchlist;
   }
   getUserInfo() {
-    this.loading = true;
+    this.loadingUser = true;
     this.auth.getUserInfo().subscribe(
       res => {
         this.userdata = res;
         this.initial = this.userdata.userName.substring(0, 1);
-        this.loading = false;
+        this.loadingUser = false;
       },
       err => {
         console.log(err);
@@ -58,11 +65,13 @@ export class UserProfileComponent implements OnInit {
     );
   }
 
-  getWatchList() {
-    this.interaction.getWatchList().subscribe(
+  async getWatchList() {
+    this.loadingWatchList = true;
+    await this.interaction.getWatchList().subscribe(
       res => {
         this.watchlist = res.data;
         this.present = res.present;
+        this.loadingWatchList = false;
       },
       err => {
         console.log(err);
@@ -72,9 +81,11 @@ export class UserProfileComponent implements OnInit {
   }
 
   getUpcoming() {
+    this.loadingUpcoming = true;
     this.dataService.getUpcomingMovies().subscribe(
       res => {
         this.upcoming = res;
+        this.loadingUpcoming = false;
       },
       err => {
         console.log(err);
@@ -82,25 +93,17 @@ export class UserProfileComponent implements OnInit {
       }
     );
   }
+
   getNowPlaying() {
+    this.loadingNowPlaying = true;
     this.dataService.getNowPlayingMovies().subscribe(
       res => {
         this.nowPlaying = res;
+        this.loadingNowPlaying = false;
       },
       err => {
         console.log(err);
       }
     );
   }
-
-  // for (let i = 0; i < 5; i++) {
-  //   this.dataService.getMovieWithMovieId(this.watchlist[i]).subscribe(
-  //     data => {
-  //       this.movies.push(data);
-  //     },
-  //     err => {
-  //       console.log(err);
-  //     }
-  //   );
-  // }
 }

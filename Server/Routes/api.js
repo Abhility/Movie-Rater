@@ -42,7 +42,6 @@ router.get("/setup", (req, res) => {
 });
 
 router.get("/user", verifyToken, verifyLoginToken, (req, res) => {
-  console.log(req.userId);
   User.findOne({ _id: req.userId }, (err, data) => {
     if (err) {
       return res.status(500).send(err);

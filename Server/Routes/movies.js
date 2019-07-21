@@ -74,9 +74,8 @@ router.get("/genre", verifyToken, (req, res) => {
     .catch(err => console.log(err));
 });
 
-router.get("/getmovie/:movieId", verifyToken, verifyLoginToken, (req, res) => {
+/*router.get("/getmovie/:movieId", verifyToken, verifyLoginToken, (req, res) => {
   const movieId = req.params.movieId;
-  console.log(movieId);
   fetch(
     `https://api.themoviedb.org/3/movie/${movieId}?api_key=${
       process.env.API_KEY
@@ -84,10 +83,10 @@ router.get("/getmovie/:movieId", verifyToken, verifyLoginToken, (req, res) => {
   )
     .then(response => response.json())
     .then(result => {
-      return res.status(200).send(result.results);
+      return res.status(200).send(result);
     })
     .catch(err => console.log(err));
-});
+});*/
 
 router.get(
   "/getmovies/now_playing",
