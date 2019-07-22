@@ -28,10 +28,8 @@ export class UserProfileComponent implements OnInit {
   list: any[];
   data: any[];
   nowPlaying: any[];
-
   tabChanged(tabChangeEvent: MatTabChangeEvent) {
     const tab = tabChangeEvent.index;
-    console.log(tab);
     if (tab === 0) {
       this.data = this.watchlist;
     }
@@ -41,15 +39,8 @@ export class UserProfileComponent implements OnInit {
     if (tab === 2) {
       this.data = this.upcoming;
     }
-    console.log("DATA:: " + this.data);
   }
-  async ngOnInit() {
-    this.getUserInfo();
-    this.getNowPlaying();
-    this.getUpcoming();
-    this.getWatchList();
-    this.data = this.watchlist;
-  }
+
   getUserInfo() {
     this.loadingUser = true;
     this.auth.getUserInfo().subscribe(
@@ -65,13 +56,14 @@ export class UserProfileComponent implements OnInit {
     );
   }
 
-  async getWatchList() {
+  getWatchList() {
     this.loadingWatchList = true;
-    await this.interaction.getWatchList().subscribe(
+    this.interaction.getWatchList().subscribe(
       res => {
         this.watchlist = res.data;
         this.present = res.present;
         this.loadingWatchList = false;
+        this.data = res.data;
       },
       err => {
         console.log(err);
@@ -105,5 +97,12 @@ export class UserProfileComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  ngOnInit() {
+    this.getWatchList();
+    this.getUserInfo();
+    this.getNowPlaying();
+    this.getUpcoming();
   }
 }

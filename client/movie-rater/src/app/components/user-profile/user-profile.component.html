@@ -24,19 +24,6 @@
     "
   >
     <mat-tab label="Watchlist">
-      <!-- <table class="watchlist" *ngIf="present">
-        <tr>
-          <th>Name</th>
-          <th>Added On</th>
-          <th>Actions</th>
-        </tr>
-        <tr *ngFor="let movie of watchlist.list">
-          <td>{{ movie }}</td>
-          <td></td>
-          <td></td>
-        </tr>
-      </table> -->
-
       <app-nowplaying [data]="data"></app-nowplaying>
       <h5 *ngIf="!present">No movies in watchlist</h5>
     </mat-tab>

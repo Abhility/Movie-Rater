@@ -9,7 +9,5 @@ import { Component, OnInit, Input } from "@angular/core";
 export class NowplayingComponent implements OnInit {
   constructor(private dataService: DataService) {}
   @Input("data") data: any[];
-  ngOnInit() {
-    console.log(this.data);
-  }
+  ngOnInit() {}
 }

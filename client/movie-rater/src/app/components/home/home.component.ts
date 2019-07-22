@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   name: string;
   data: any[];
   dataLoading = true;
-  @ViewChild("tab", { read: null, static: true }) tabGroup;
+  @ViewChild("tab", { read: null, static: false }) tabGroup;
 
   fetchData() {
     this.dataLoading = true;

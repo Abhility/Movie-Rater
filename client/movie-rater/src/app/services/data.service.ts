@@ -4,8 +4,8 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
   providedIn: "root"
 })
 export class DataService {
-  // API_URL = `/movie-info`;
-  API_URL = "http://localhost:5000/movie-info";
+  API_URL = `/movie-info`;
+  // API_URL = "http://localhost:5000/movie-info";
   constructor(private http: HttpClient) {}
 
   searchMovie(name: string) {
@@ -23,5 +23,9 @@ export class DataService {
 
   getUpcomingMovies() {
     return this.http.get<any>(this.API_URL + `/getmovies/upcoming`);
+  }
+
+  getTopRatedMovies() {
+    return this.http.get<any>(this.API_URL + `/getmovies/top-rated`);
   }
 }

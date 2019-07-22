@@ -1,3 +1,4 @@
+import { DataService } from "./../../services/data.service";
 import { Component, OnInit } from "@angular/core";
 import { GenresDataService } from "src/app/services/genres-data.service";
 
@@ -10,15 +11,14 @@ export class TopMoviesComponent implements OnInit {
   loading = true;
   movies: any[];
 
-  constructor(private genreService: GenresDataService) {}
+  constructor(private dataService: DataService) {}
 
   ngOnInit() {
     this.loading = true;
-    this.genreService.getData("Action").subscribe(
+    this.dataService.getTopRatedMovies().subscribe(
       res => {
         this.movies = res;
         this.loading = false;
-        console.log(this.movies);
       },
       err => {
         console.log(err);

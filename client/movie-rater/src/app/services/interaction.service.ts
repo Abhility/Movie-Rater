@@ -5,8 +5,8 @@ import { Injectable } from "@angular/core";
   providedIn: "root"
 })
 export class InteractionService {
-  // API_URL = "/movie-info";
-  API_URL = "http://localhost:5000/movie-info";
+  API_URL = "/movie-info";
+  // API_URL = "http://localhost:5000/movie-info";
   constructor(private http: HttpClient) {}
 
   addToWatchList(movieId: string) {
