@@ -37,7 +37,7 @@ router.get("/search", verifyToken, (req, res) => {
   fetch(
     `https://api.themoviedb.org/3/search/movie?api_key=${
       process.env.API_KEY
-    }&language=en-US&query=${name}`
+    }&language=en-US&query=${name}&region=IN`
   )
     .then(response => response.json())
     .then(result => {
@@ -50,7 +50,7 @@ router.get("/trending", verifyToken, (req, res) => {
   fetch(
     `https://api.themoviedb.org/3/trending/movie/day?api_key=${
       process.env.API_KEY
-    }`
+    }&region=IN`
   )
     .then(response => response.json())
     .then(result => {
@@ -65,7 +65,7 @@ router.get("/genre", verifyToken, (req, res) => {
   fetch(
     `https://api.themoviedb.org/3/discover/movie?api_key=${
       process.env.API_KEY
-    }&sort_by=popularity.desc&with_genres=${genreId}`
+    }&sort_by=popularity.desc&with_genres=${genreId}&region=IN`
   )
     .then(response => response.json())
     .then(result => {
@@ -118,5 +118,23 @@ router.get("/getmovies/upcoming", verifyToken, verifyLoginToken, (req, res) => {
     })
     .catch(err => console.log(err));
 });
+
+router.get(
+  "/getmovies/top-rated",
+  verifyToken,
+  verifyLoginToken,
+  (req, res) => {
+    fetch(
+      `https://api.themoviedb.org/3/movie/top_rated?api_key=${
+        process.env.API_KEY
+      }&page=1&region=IN`
+    )
+      .then(response => response.json())
+      .then(result => {
+        return res.status(200).send(result.results);
+      })
+      .catch(err => console.log(err));
+  }
+);
 
 module.exports = router;

@@ -1,4 +1,8 @@
-<mat-card class="movie" *ngFor="let movie of data" [hidden]="loading">
+<mat-card
+  class="movie"
+  *ngFor="let movie of data; let i = index"
+  [hidden]="loading"
+>
   <mat-card-header class="card-header">
     <mat-card-title>{{ movie.title }}</mat-card-title>
     <mat-card-subtitle>{{ movie.release_date }}</mat-card-subtitle>
@@ -15,16 +19,16 @@
     </p>
     <mat-card-actions class="actions">
       <button
-        *ngIf="add"
+        *ngIf="getValue(i)"
         mat-icon-button
-        (click)="addToWatchList(movie.id, $event)"
+        (click)="addToWatchList(movie.id, i)"
       >
         <mat-icon title="Add to watchlist">{{ addIcon }}</mat-icon>
       </button>
       <button
-        *ngIf="!add"
+        *ngIf="!getValue(i)"
         mat-icon-button
-        (click)="removeFromWatchList(movie.id)"
+        (click)="removeFromWatchList(movie.id, i)"
       >
         <mat-icon title="Remove from watchlist">{{ removeIcon }}</mat-icon>
       </button>

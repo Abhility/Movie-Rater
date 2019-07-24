@@ -92,12 +92,10 @@ router.get("/getwatchlist", verifyToken, verifyLoginToken, async (req, res) => {
   let watchlist = await getWatchlist(req.userId);
   if (watchlist == null) {
     res.status(200).send({ present: false, data: null });
-    console.log({ present: false, data: null });
     res.end();
   } else {
     let movie = await createWatchlist(watchlist);
     res.status(200).send({ present: true, data: movie });
-    console.log({ present: true, data: movie });
     res.end();
   }
 });

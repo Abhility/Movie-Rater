@@ -7,25 +7,60 @@
   class="right"
 >
   <mat-tab label="Comedy">
-    <app-genres [loading]="dataLoading" [genreData]="data"></app-genres>
+    <app-genres
+      *ngIf="length"
+      [loading]="dataLoading"
+      [genreData]="data"
+      [length]="length"
+    ></app-genres>
   </mat-tab>
   <mat-tab label="Action">
-    <app-genres [loading]="dataLoading" [genreData]="data"></app-genres>
+    <app-genres
+      *ngIf="length"
+      [loading]="dataLoading"
+      [genreData]="data"
+      [length]="length"
+    ></app-genres>
   </mat-tab>
   <mat-tab label="Romance">
-    <app-genres [loading]="dataLoading" [genreData]="data"></app-genres>
+    <app-genres
+      *ngIf="length"
+      [loading]="dataLoading"
+      [genreData]="data"
+      [length]="length"
+    ></app-genres>
   </mat-tab>
   <mat-tab label="Mystery">
-    <app-genres [loading]="dataLoading" [genreData]="data"></app-genres>
+    <app-genres
+      *ngIf="length"
+      [loading]="dataLoading"
+      [genreData]="data"
+      [length]="length"
+    ></app-genres>
   </mat-tab>
   <mat-tab label="Thriller">
-    <app-genres [loading]="dataLoading" [genreData]="data"></app-genres>
+    <app-genres
+      *ngIf="length"
+      [loading]="dataLoading"
+      [genreData]="data"
+      [length]="length"
+    ></app-genres>
   </mat-tab>
   <mat-tab label="War">
-    <app-genres [loading]="dataLoading" [genreData]="data"></app-genres>
+    <app-genres
+      *ngIf="length"
+      [loading]="dataLoading"
+      [genreData]="data"
+      [length]="length"
+    ></app-genres>
   </mat-tab>
   <mat-tab label="Horror">
-    <app-genres [loading]="dataLoading" [genreData]="data"></app-genres>
+    <app-genres
+      *ngIf="length"
+      [loading]="dataLoading"
+      [genreData]="data"
+      [length]="length"
+    ></app-genres>
   </mat-tab>
 </mat-tab-group>
 <img *ngIf="dataLoading" class="prog" src="../../assets/cube.gif" />

@@ -11,8 +11,9 @@ import { AuthenticationService } from "src/app/services/authentication.service";
 })
 export class HomeComponent implements OnInit, AfterViewInit {
   name: string;
-  data: any[];
+  data: any[] = new Array();
   dataLoading = true;
+  length: number;
   @ViewChild("tab", { read: null, static: false }) tabGroup;
 
   fetchData() {
@@ -20,7 +21,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
     const genre = this.tabGroup._tabs.first.textLabel;
     this.genreService.getData(genre).subscribe(
       res => {
-        this.data = res;
+        // this.data = [];
+        this.data.push(...res);
+        this.length = this.data.length;
+        console.dir(this.data);
         this.dataLoading = false;
       },
       err => {
@@ -38,11 +42,14 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ) {}
 
   tabChanged(tabChangeEvent: MatTabChangeEvent): void {
+    this.data = [];
     const label = tabChangeEvent.tab.textLabel;
     this.dataLoading = true;
     this.genreService.getData(label).subscribe(
       res => {
-        this.data = res;
+        this.data.push(...res);
+        this.length = this.data.length;
+        console.dir(this.data.length);
         this.dataLoading = false;
       },
       err => {
