@@ -8,59 +8,63 @@
 >
   <mat-tab label="Comedy">
     <app-genres
-      *ngIf="length"
+      *ngIf="!dataLoading && !loadingWatchlist"
       [loading]="dataLoading"
       [genreData]="data"
-      [length]="length"
+      [watchlist]="watchlist"
     ></app-genres>
   </mat-tab>
   <mat-tab label="Action">
     <app-genres
-      *ngIf="length"
+      *ngIf="!dataLoading && !loadingWatchlist"
       [loading]="dataLoading"
       [genreData]="data"
-      [length]="length"
+      [watchlist]="watchlist"
     ></app-genres>
   </mat-tab>
   <mat-tab label="Romance">
     <app-genres
-      *ngIf="length"
+      *ngIf="!dataLoading && !loadingWatchlist"
       [loading]="dataLoading"
       [genreData]="data"
-      [length]="length"
+      [watchlist]="watchlist"
     ></app-genres>
   </mat-tab>
   <mat-tab label="Mystery">
     <app-genres
-      *ngIf="length"
+      *ngIf="!dataLoading && !loadingWatchlist"
       [loading]="dataLoading"
       [genreData]="data"
-      [length]="length"
+      [watchlist]="watchlist"
     ></app-genres>
   </mat-tab>
   <mat-tab label="Thriller">
     <app-genres
-      *ngIf="length"
+      *ngIf="!dataLoading && !loadingWatchlist"
       [loading]="dataLoading"
       [genreData]="data"
-      [length]="length"
+      [watchlist]="watchlist"
     ></app-genres>
   </mat-tab>
   <mat-tab label="War">
     <app-genres
-      *ngIf="length"
+      *ngIf="!dataLoading && !loadingWatchlist"
       [loading]="dataLoading"
       [genreData]="data"
-      [length]="length"
+      [watchlist]="watchlist"
     ></app-genres>
   </mat-tab>
   <mat-tab label="Horror">
     <app-genres
-      *ngIf="length"
+      *ngIf="!dataLoading && !loadingWatchlist"
       [loading]="dataLoading"
       [genreData]="data"
-      [length]="length"
+      [watchlist]="watchlist"
     ></app-genres>
   </mat-tab>
 </mat-tab-group>
-<img *ngIf="dataLoading" class="prog" src="../../assets/cube.gif" />
+<img
+  *ngIf="dataLoading || loadingWatchlist"
+  class="prog"
+  src="../../assets/cube.gif"
+/>

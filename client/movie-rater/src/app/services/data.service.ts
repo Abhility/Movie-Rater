@@ -1,11 +1,11 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class DataService {
   API_URL = `/movie-info`;
-  // API_URL = "http://localhost:5000/movie-info";
+  // API_URL = 'http://localhost:5000/movie-info';
   constructor(private http: HttpClient) {}
 
   searchMovie(name: string) {

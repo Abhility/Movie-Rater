@@ -1,30 +1,36 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from "@angular/core";
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 
-import { MatTabChangeEvent } from "@angular/material";
-import { GenresDataService } from "src/app/services/genres-data.service";
-import { AuthenticationService } from "src/app/services/authentication.service";
+import { MatTabChangeEvent } from '@angular/material';
+import { GenresDataService } from 'src/app/services/genres-data.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { InteractionService } from 'src/app/services/interaction.service';
 
 @Component({
-  selector: "app-home",
-  templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.css"]
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit, AfterViewInit {
   name: string;
   data: any[] = new Array();
   dataLoading = true;
   length: number;
-  @ViewChild("tab", { read: null, static: false }) tabGroup;
+  loadingWatchlist = true;
+  watchlist: any[];
+  @ViewChild('tab', { read: null, static: false }) tabGroup;
 
+  constructor(
+    private genreService: GenresDataService,
+    private authService: AuthenticationService,
+    private interact: InteractionService
+  ) {}
   fetchData() {
     this.dataLoading = true;
     const genre = this.tabGroup._tabs.first.textLabel;
     this.genreService.getData(genre).subscribe(
       res => {
-        // this.data = [];
         this.data.push(...res);
         this.length = this.data.length;
-        console.dir(this.data);
         this.dataLoading = false;
       },
       err => {
@@ -36,11 +42,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.fetchData();
   }
 
-  constructor(
-    private genreService: GenresDataService,
-    private authService: AuthenticationService
-  ) {}
-
   tabChanged(tabChangeEvent: MatTabChangeEvent): void {
     this.data = [];
     const label = tabChangeEvent.tab.textLabel;
@@ -49,8 +50,19 @@ export class HomeComponent implements OnInit, AfterViewInit {
       res => {
         this.data.push(...res);
         this.length = this.data.length;
-        console.dir(this.data.length);
         this.dataLoading = false;
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+  getWatchlist() {
+    this.loadingWatchlist = true;
+    this.interact.getWatchList().subscribe(
+      res => {
+        this.watchlist = res.data;
+        this.loadingWatchlist = false;
       },
       err => {
         console.log(err);
@@ -61,5 +73,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
   isLoggedIn() {
     return this.authService.isLoggedIn();
   }
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.authService.isLoggedIn()) {
+      this.getWatchlist();
+    } else {
+      this.loadingWatchlist = false;
+    }
+  }
 }
