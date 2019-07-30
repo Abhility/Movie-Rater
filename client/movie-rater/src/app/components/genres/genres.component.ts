@@ -18,7 +18,7 @@ export class GenresComponent implements OnInit {
   ) {}
   addIcon = 'add_to_queue';
   removeIcon = 'library_add';
-  @Input('genreData') data: any;
+  @Input('genreData') data: any[];
   @Input() loading: boolean;
   @Input() watchlist: any[];
   list: boolean[];
@@ -60,13 +60,16 @@ export class GenresComponent implements OnInit {
     this.list = new Array(this.data.length);
     this.list.fill(true);
     if (this.auth.isLoggedIn()) {
-      for (const watch of this.watchlist) {
-        for (const [j, movie] of this.data.entries()) {
-          if (movie.id === watch.id) {
-            this.list[j] = false;
-          }
-        }
-      }
+      const movies = this.data.map(movie => movie.id);
+      this.watchlist
+        .map(movie => movie.id)
+        .forEach(watchId => {
+          movies.forEach((movieId, index) => {
+            if (movieId === watchId) {
+              this.list[index] = false;
+            }
+          });
+        });
     }
   }
   getValue(index) {

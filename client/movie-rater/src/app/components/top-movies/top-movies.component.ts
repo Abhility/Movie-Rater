@@ -1,11 +1,10 @@
-import { DataService } from "./../../services/data.service";
-import { Component, OnInit } from "@angular/core";
-import { GenresDataService } from "src/app/services/genres-data.service";
+import { DataService } from './../../services/data.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: "app-top-movies",
-  templateUrl: "./top-movies.component.html",
-  styleUrls: ["./top-movies.component.css"]
+  selector: 'app-top-movies',
+  templateUrl: './top-movies.component.html',
+  styleUrls: ['./top-movies.component.css']
 })
 export class TopMoviesComponent implements OnInit {
   loading = true;

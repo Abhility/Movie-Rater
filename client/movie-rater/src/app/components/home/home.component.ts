@@ -1,7 +1,7 @@
+import { DataService } from 'src/app/services/data.service';
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 
 import { MatTabChangeEvent } from '@angular/material';
-import { GenresDataService } from 'src/app/services/genres-data.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { InteractionService } from 'src/app/services/interaction.service';
 
@@ -20,14 +20,13 @@ export class HomeComponent implements OnInit, AfterViewInit {
   @ViewChild('tab', { read: null, static: false }) tabGroup;
 
   constructor(
-    private genreService: GenresDataService,
     private authService: AuthenticationService,
-    private interact: InteractionService
+    private interact: InteractionService,
+    private dataSerrvice: DataService
   ) {}
-  fetchData() {
+  fetchData(genre) {
     this.dataLoading = true;
-    const genre = this.tabGroup._tabs.first.textLabel;
-    this.genreService.getData(genre).subscribe(
+    this.dataSerrvice.getGenreData(genre).subscribe(
       res => {
         this.data.push(...res);
         this.length = this.data.length;
@@ -39,24 +38,16 @@ export class HomeComponent implements OnInit, AfterViewInit {
     );
   }
   ngAfterViewInit() {
-    this.fetchData();
+    const genre = this.tabGroup._tabs.first.textLabel;
+    this.fetchData(genre);
   }
 
   tabChanged(tabChangeEvent: MatTabChangeEvent): void {
     this.data = [];
     const label = tabChangeEvent.tab.textLabel;
-    this.dataLoading = true;
-    this.genreService.getData(label).subscribe(
-      res => {
-        this.data.push(...res);
-        this.length = this.data.length;
-        this.dataLoading = false;
-      },
-      err => {
-        console.log(err);
-      }
-    );
+    this.fetchData(label);
   }
+
   getWatchlist() {
     this.loadingWatchlist = true;
     this.interact.getWatchList().subscribe(
@@ -73,6 +64,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   isLoggedIn() {
     return this.authService.isLoggedIn();
   }
+
   ngOnInit() {
     if (this.authService.isLoggedIn()) {
       this.getWatchlist();

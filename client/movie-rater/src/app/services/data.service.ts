@@ -28,4 +28,9 @@ export class DataService {
   getTopRatedMovies() {
     return this.http.get<any>(this.API_URL + `/getmovies/top-rated`);
   }
+
+  getGenreData(genre: string) {
+    const headers = new HttpHeaders({ genre });
+    return this.http.get<any>(this.API_URL + '/genre', { headers });
+  }
 }

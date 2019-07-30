@@ -1,47 +1,10 @@
-.left {
-  position: relative;
-  left: 0px;
-  top: 0px;
-  width: 40%;
+.tabs {
+  width: 100%;
+  margin: auto;
   min-height: 100vh;
-  overflow: auto;
-  display: block;
-  color: whitesmoke;
 }
-.right {
-  position: absolute;
-  display: block;
-  width: 60%;
-  min-height: 100vh;
-  left: 40%;
-  top: 815px;
-  border-left: 2px solid black;
-}
-.right::-webkit-scrollbar {
-  width: 0.3em;
-}
-
-.right::-webkit-scrollbar-thumb {
-  background-color: grey;
-  outline: none;
-}
-.left::-webkit-scrollbar {
-  width: 0.3em;
-}
-
-.left::-webkit-scrollbar-thumb {
-  background-color: grey;
-  outline: none;
-}
-
 .prog {
   position: relative;
-  left: 65%;
+  left: 45%;
   top: -450px;
-}
-
-@media (max-width: 768px) {
-  .right {
-    top: 850px;
-  }
 }
