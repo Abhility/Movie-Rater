@@ -1,38 +1,40 @@
-<mat-card
-  class="movie"
-  *ngFor="let movie of data; let i = index"
-  [hidden]="loading"
->
-  <mat-card-header class="card-header">
-    <mat-card-title>{{ movie.title }}</mat-card-title>
-    <mat-card-subtitle>{{ movie.release_date }}</mat-card-subtitle>
-  </mat-card-header>
-  <img
-    mat-card-image
-    src="https://image.tmdb.org/t/p/original{{ movie.poster_path }}"
-    alt="Poster not found"
-    class="card-image"
-  />
-  <mat-card-content class="card-content">
-    <p>
-      {{ movie.overview }}
-    </p>
-    <mat-card-actions class="actions">
-      <button
-        *ngIf="getValue(i)"
-        mat-icon-button
-        (click)="addToWatchList(movie.id, i)"
-      >
-        <mat-icon title="Add to watchlist">{{ addIcon }}</mat-icon>
-      </button>
-      <button
-        *ngIf="!getValue(i)"
-        mat-icon-button
-        (click)="removeFromWatchList(movie.id, i)"
-      >
-        <mat-icon title="Remove from watchlist">{{ removeIcon }}</mat-icon>
-      </button>
-      <span class="rating"><mat-icon>star</mat-icon></span>
-    </mat-card-actions>
-  </mat-card-content>
-</mat-card>
+<div class="cards">
+  <mat-card
+    class="movie"
+    *ngFor="let movie of data; let i = index"
+    [hidden]="loading"
+  >
+    <mat-card-header class="card-header">
+      <mat-card-title>{{ movie.title }}</mat-card-title>
+      <mat-card-subtitle>{{ movie.release_date }}</mat-card-subtitle>
+    </mat-card-header>
+    <img
+      mat-card-image
+      src="https://image.tmdb.org/t/p/original{{ movie.poster_path }}"
+      alt="Poster not found"
+      class="card-image"
+    />
+    <mat-card-content class="card-content">
+      <p>
+        {{ movie.overview }}
+      </p>
+      <mat-card-actions class="actions">
+        <button
+          *ngIf="getValue(i)"
+          mat-icon-button
+          (click)="addToWatchList(movie.id, i)"
+        >
+          <mat-icon title="Add to watchlist">{{ addIcon }}</mat-icon>
+        </button>
+        <button
+          *ngIf="!getValue(i)"
+          mat-icon-button
+          (click)="removeFromWatchList(movie.id, i)"
+        >
+          <mat-icon title="Remove from watchlist">{{ removeIcon }}</mat-icon>
+        </button>
+        <span class="rating"><mat-icon>star</mat-icon></span>
+      </mat-card-actions>
+    </mat-card-content>
+  </mat-card>
+</div>
